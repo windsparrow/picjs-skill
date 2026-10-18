@@ -1,0 +1,16 @@
+// A small light-theme flow, used in the project README.
+Label ("""**Request lifecycle**
+请求生命周期""" 14pt fill #1F2430) with .c at (3.9, -1.15)
+
+client = Box ("""**Client**
+客户端""" 9.5pt fill #1F2430) wid 1.7 ht .7 fill #DCE8F7 stroke #7FA3C8 at (0, 0)
+api    = Box ("""**API Gateway**
+网关""" 9.5pt fill #1F2430) wid 1.8 ht .7 fill #F6E3C5 stroke #D9A45B at (2.6, 0)
+svc    = Box ("""**Service**
+服务""" 9.5pt fill #1F2430) wid 1.7 ht .7 fill #EFE6F5 stroke #B49BC9 at (5.2, 0)
+db     = Box ("""**Database**
+数据库""" 9.5pt fill #1F2430) wid 1.7 ht .7 fill #E4EFE3 stroke #8FB894 at (7.8, 0)
+
+Line -> from client.e to api.w ("HTTPS" fill #B45309 9pt) above stroke #6B7280
+Line -> from api.e to svc.w ("gRPC" fill #B45309 9pt) above stroke #6B7280
+Line -> from svc.e to db.w ("SQL" fill #B45309 9pt) above stroke #6B7280

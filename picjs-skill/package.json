@@ -1,0 +1,13 @@
+{
+  "name": "picjs-skill",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A self-contained picjs skill: on-demand docs, examples, online runtime install, rendering and update scripts",
+  "scripts": {
+    "ensure": "bash scripts/ensure-picjs.sh",
+    "render": "node scripts/render.mjs",
+    "update": "bash scripts/update-from-upstream.sh",
+    "check-upstream": "bash scripts/update-from-upstream.sh --check"
+  }
+}

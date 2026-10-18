@@ -1,0 +1,34 @@
+<!-- picjs source:
+// Figure 2 — one sublayer: residual connection + LayerNorm
+// The title and caption are single-line CJK labels; their anchors were nudged
+// left after measuring the render (picjs estimates width at 0.52em/char).
+Label ("一个子层内部：残差连接 + LayerNorm" fill #1F2430 13pt font_weight bold) with .c at (2.287, -0.95)
+
+Line.stroke = #6B7280
+Line.thickness = .022
+Box.rx = .08
+Box.ry = .08
+
+xlab = Label ("x" fill #1F2430 13pt font_weight bold) at (-0.55, 0)
+
+sublayer = Box ("""**Sublayer**
+自注意力 / 前馈网络""" 10pt fill #1F2430) wid 1.9 ht .7 fill #DCE8F7 stroke #7FA3C8 at (1.7, 0)
+
+plus = Box ("+" fill #1F2430 12pt font_weight bold) wid .3 ht .3 fill #FFFFFF stroke #6B7280 at (3.4, 0)
+
+norm = Box ("""**LayerNorm**
+层归一化""" 10pt fill #1F2430) wid 1.45 ht .7 fill #EFE6F5 stroke #B49BC9 at (4.85, 0)
+
+ylab = Label ("y" fill #1F2430 13pt font_weight bold) at (6.45, 0)
+
+Line -> from (-0.35, 0) to sublayer.w
+Line -> from sublayer.e to plus.w
+Line -> from plus.e to norm.w
+Line -> from norm.e to (6.15, 0)
+
+Line -> from (0.35, 0) then to (0.35, 1.0) then to (3.4, 1.0) then to plus.s radius .12
+
+Label ("残差：把 x 原样加回子层的输出" fill #B45309 9.5pt) at (1.434, 1.22)
+
+-->
+<svg viewBox="-0.7915277777777778 -1.2583333333333333 7.483055555555556 2.7575" class="_myopic-1" xmlns="http://www.w3.org/2000/svg"><rect x="-0.7915277777777778" y="-1.2583333333333333" width="7.483055555555556" height="2.7575" fill="#FAF7F2"/><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.18055555555555555" font-style="normal" font-variant="normal" font-weight="bold" font-stretch="normal" x="1.331861111111111" y="-1.0583333333333333" dominant-baseline="text-before-edge" data-jp-id="SLabel-1">一个子层内部：残差连接 + LayerNorm</text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.18055555555555555" font-style="normal" font-variant="normal" font-weight="bold" font-stretch="normal" x="-0.5915277777777779" y="-0.10833333333333332" dominant-baseline="text-before-edge" data-jp-id="SLabel-2">x</text><g data-jp-id="SBox-3"><rect width="1.9" height="0.7" fill="#dce8f7" stroke="#7fa3c8" stroke-width="0.015" rx="0.08" ry="0.08" x="0.75" y="-0.35" data-jp-id="SBox-3"></rect><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="1.348611111111111" y="-0.16666666666666666" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-4"><tspan x="1.7"><tspan font-weight="bold">Sublayer</tspan></tspan><tspan x="1.7" dy="0.16666666666666666">自注意力 / 前馈网络</tspan></text></g><g data-jp-id="SBox-5"><rect width="0.3" height="0.3" fill="#ffffff" stroke="#6b7280" stroke-width="0.015" rx="0.08" ry="0.08" x="3.25" y="-0.15" data-jp-id="SBox-5"></rect><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.16666666666666666" font-style="normal" font-variant="normal" font-weight="bold" font-stretch="normal" x="3.3616666666666664" y="-0.09999999999999999" dominant-baseline="text-before-edge" data-jp-id="SLabel-6">+</text></g><g data-jp-id="SBox-7"><rect width="1.45" height="0.7" fill="#efe6f5" stroke="#b49bc9" stroke-width="0.015" rx="0.08" ry="0.08" x="4.125" y="-0.35" data-jp-id="SBox-7"></rect><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="4.5625" y="-0.16666666666666666" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-8"><tspan x="4.85"><tspan font-weight="bold">LayerNorm</tspan></tspan><tspan x="4.85" dy="0.16666666666666666">层归一化</tspan></text></g><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.18055555555555555" font-style="normal" font-variant="normal" font-weight="bold" font-stretch="normal" x="6.408472222222223" y="-0.10833333333333332" dominant-baseline="text-before-edge" data-jp-id="SLabel-9">y</text><g data-jp-id="SLine-10"><path stroke="#6b7280" stroke-width="0.022" d="M -0.35 0 L 0.6312 0" fill="none"></path><path d="M 0.6312 -0.033 L 0.717 0 L 0.6312 0.033 Z" fill="#6b7280" stroke="none"></path></g><g data-jp-id="SLine-11"><path stroke="#6b7280" stroke-width="0.022" d="M 2.65 0 L 3.1312 0" fill="none"></path><path d="M 3.1312 -0.033 L 3.217 0 L 3.1312 0.033 Z" fill="#6b7280" stroke="none"></path></g><g data-jp-id="SLine-12"><path stroke="#6b7280" stroke-width="0.022" d="M 3.55 0 L 4.0062 0" fill="none"></path><path d="M 4.0062 -0.033 L 4.092 0 L 4.0062 0.033 Z" fill="#6b7280" stroke="none"></path></g><g data-jp-id="SLine-13"><path stroke="#6b7280" stroke-width="0.022" d="M 5.574999999999999 0 L 6.0312 0" fill="none"></path><path d="M 6.0312 -0.033 L 6.117 0 L 6.0312 0.033 Z" fill="#6b7280" stroke="none"></path></g><g data-jp-id="SPolyline-14"><path stroke="#6b7280" stroke-width="0.022" fill="none" d="M 0.35 0 L 0.35 0.88 A 0.12 0.12 0 0 0 0.47 1 L 3.28 1 A 0.12 0.12 0 0 0 3.4 0.88 L 3.4 0.2688"></path><path d="M 3.367 0.2688 L 3.4 0.183 L 3.433 0.2688 Z" fill="#6b7280" stroke="none"></path></g><text fill="#b45309" font-family="Roboto, sans-serif" font-size="0.13194444444444445" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="0.9484444444444444" y="1.1408333333333334" dominant-baseline="text-before-edge" data-jp-id="SLabel-15">残差：把 x 原样加回子层的输出</text></svg>

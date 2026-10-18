@@ -1,0 +1,37 @@
+// Figure 3 — scaled dot-product attention, step by step (vertical)
+// The title is a single-line CJK label; its anchor was nudged left after
+// measuring the render, because picjs estimates text width at 0.52em/char.
+Label ("缩放点积注意力" fill #1F2430 18pt font_weight bold) with .c at (-0.459, -6.35)
+Label ("Attention(Q, K, V) = softmax(QKᵀ / √d_k) · V" fill #5A6478 11pt) with .c at (0, -6.0)
+
+Line.stroke = #6B7280
+Line.thickness = .025
+
+q = Box ("Q" fill #7A3E00 14pt font_weight bold) wid .8 ht .4 fill #F6E3C5 stroke #D9A45B rx .18 at (-0.6, -5.55)
+k = Box ("K" fill #7A3E00 14pt font_weight bold) wid .8 ht .4 fill #F6E3C5 stroke #D9A45B rx .18 at (0.6, -5.55)
+
+mm1   = Box ("""**MatMul**
+Q · Kᵀ""" 11pt fill #1F2430) wid 2.0 ht .6 fill #DCE8F7 stroke #7FA3C8 at (0, -4.75)
+scale = Box ("""**Scale**
+÷ √d_k""" 11pt fill #1F2430) wid 2.0 ht .6 fill #DCE8F7 stroke #7FA3C8 at (0, -4.0)
+mask  = Box ("""**Mask**
+遮住不该看的位置""" 11pt fill #1F2430) wid 2.0 ht .6 fill #FDF6EC stroke #D9A45B dashed at (0, -3.25)
+sm    = Box ("""**Softmax**
+按行归一化""" 11pt fill #1F2430) wid 2.0 ht .6 fill #E4EFE3 stroke #8FB894 at (0, -2.5)
+mm2   = Box ("""**MatMul**
+权重 · V""" 11pt fill #1F2430) wid 2.0 ht .6 fill #DCE8F7 stroke #7FA3C8 at (0, -1.75)
+
+v   = Box ("V" fill #7A3E00 14pt font_weight bold) wid .8 ht .4 fill #F6E3C5 stroke #D9A45B rx .18 at (2.1, -1.75)
+out = Box ("""**Output**
+注意力输出""" 9pt fill #1F2430) wid 1.7 ht .42 fill #FFFFFF stroke #C9C2B4 rx .1 at (0, -0.95)
+
+Line -> from q.s then to (0, -5.3) then to mm1.n
+Line -> from k.s then to (0, -5.3) then to mm1.n
+
+Line -> from mm1.s to scale.n
+Line -> from scale.s to mask.n
+Line -> from mask.s to sm.n
+Line -> from sm.s to mm2.n
+Line -> from mm2.s to out.n
+
+Line -> from v.w to mm2.e

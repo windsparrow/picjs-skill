@@ -1,0 +1,109 @@
+// Figure 1 — the Transformer, end to end
+// Text centring: multi-line box labels use one triple-quoted label so picjs emits
+// text-anchor="middle" (exact). The single-line CJK titles were nudged left after
+// measuring the rendered PNG (picjs estimates width at 0.52em/char; bold Latin
+// and CJK both need more room than that).
+Label ("Transformer 的逻辑结构" fill #1F2430 24pt font_weight bold) with .c at (3.532, -8.45)
+Label ("从输入 token 到下一个 token 的概率，一次完整的前向计算" fill #5A6478 11pt) with .c at (3.308, -8.05)
+
+Line.stroke = #6B7280
+Line.thickness = .022
+
+// === encoder input stack
+enc_in  = Box ("""**Input tokens**
+输入 token 序列""" 9.5pt fill #1F2430) wid 2.1 ht .4 fill #FFFFFF stroke #C9C2B4 rx .18 at (2.2, 0)
+enc_emb = Box ("""**Input Embedding**
+输入嵌入""" 10pt fill #1F2430) wid 2.5 ht .52 fill #F3EEE4 stroke #C9C2B4 at (2.2, -0.65)
+enc_plus = Box ("+" fill #1F2430 12pt font_weight bold) wid .26 ht .26 fill #FFFFFF stroke #6B7280 at (2.2, -1.35)
+enc_pe  = Box ("""**Positional Encoding**
+位置编码""" 8.5pt fill #1F2430) wid 1.6 ht .42 fill #FDF6EC stroke #D9A45B at (0.2, -1.35)
+
+// === encoder stack
+enc_box = Box "" wid 2.8 ht 2.6 fill #FFFFFF stroke #C9C2B4 thickness .018 rx .1 at (2.2, -3.1)
+enc_attn = Box ("""**Multi-Head Self-Attention**
+多头自注意力""" 10pt fill #1F2430) wid 2.35 ht .6 fill #DCE8F7 stroke #7FA3C8 at (2.2, -2.3)
+enc_n1   = Box ("Add & Norm" fill #1F2430 9.5pt) wid 1.5 ht .28 fill #EFE6F5 stroke #B49BC9 at (2.2, -2.92)
+enc_ffn  = Box ("""**Feed Forward**
+前馈网络""" 10pt fill #1F2430) wid 2.1 ht .5 fill #E4EFE3 stroke #8FB894 at (2.2, -3.52)
+enc_n2   = Box ("Add & Norm" fill #1F2430 9.5pt) wid 1.5 ht .28 fill #EFE6F5 stroke #B49BC9 at (2.2, -4.1)
+
+// === decoder input stack
+dec_in  = Box ("""**Output tokens**
+已生成（右移）""" 9.5pt fill #1F2430) wid 2.3 ht .4 fill #FFFFFF stroke #C9C2B4 rx .18 at (7.4, 0)
+dec_emb = Box ("""**Output Embedding**
+输出嵌入""" 10pt fill #1F2430) wid 2.5 ht .52 fill #F3EEE4 stroke #C9C2B4 at (7.4, -0.65)
+dec_plus = Box ("+" fill #1F2430 12pt font_weight bold) wid .26 ht .26 fill #FFFFFF stroke #6B7280 at (7.4, -1.35)
+dec_pe  = Box ("""**Positional Encoding**
+位置编码""" 8.5pt fill #1F2430) wid 1.6 ht .42 fill #FDF6EC stroke #D9A45B at (5.2, -1.35)
+
+// === decoder stack
+dec_box = Box "" wid 2.8 ht 3.75 fill #FFFFFF stroke #C9C2B4 thickness .018 rx .1 at (7.4, -3.675)
+dec_masked = Box ("""**Masked Self-Attention**
+掩码自注意力""" 10pt fill #1F2430) wid 2.35 ht .6 fill #DCE8F7 stroke #7FA3C8 at (7.4, -2.25)
+dec_n1     = Box ("Add & Norm" fill #1F2430 9.5pt) wid 1.5 ht .28 fill #EFE6F5 stroke #B49BC9 at (7.4, -2.87)
+dec_cross  = Box ("""**Cross-Attention**
+交叉注意力""" 10pt fill #1F2430) wid 2.35 ht .6 fill #DCE8F7 stroke #7FA3C8 at (7.4, -3.47)
+dec_n2     = Box ("Add & Norm" fill #1F2430 9.5pt) wid 1.5 ht .28 fill #EFE6F5 stroke #B49BC9 at (7.4, -4.09)
+dec_ffn    = Box ("""**Feed Forward**
+前馈网络""" 10pt fill #1F2430) wid 2.1 ht .5 fill #E4EFE3 stroke #8FB894 at (7.4, -4.69)
+dec_n3     = Box ("Add & Norm" fill #1F2430 9.5pt) wid 1.5 ht .28 fill #EFE6F5 stroke #B49BC9 at (7.4, -5.27)
+
+// === output head
+linear  = Box ("""**Linear**
+线性层""" 10pt fill #1F2430) wid 1.7 ht .5 fill #F3EEE4 stroke #C9C2B4 at (7.4, -6.2)
+softmax = Box ("""**Softmax**
+归一化为概率""" 10pt fill #1F2430) wid 1.7 ht .5 fill #F3EEE4 stroke #C9C2B4 at (7.4, -6.95)
+out     = Box ("""**Next token**
+输出概率""" 9.5pt fill #1F2430) wid 2.4 ht .4 fill #FFFFFF stroke #C9C2B4 rx .18 at (7.4, -7.65)
+
+// === encoder arrows
+Line -> from enc_in.n to enc_emb.s
+Line -> from enc_emb.n to enc_plus.s
+Line -> from enc_plus.n to enc_attn.s
+Line -> from enc_pe.e to enc_plus.w
+
+Line -> from enc_attn.n to enc_n1.s
+Line -> from enc_n1.n to enc_ffn.s
+Line -> from enc_ffn.n to enc_n2.s
+
+// === encoder → decoder: the encoder output becomes K and V
+Line -> from enc_n2.n then to (2.2, -4.9) then to (5.2, -4.9) then to (5.2, -3.47) then to dec_cross.w stroke #B45309 thick .028 radius .1
+Label ("K, V" fill #B45309 10pt font_weight bold) at (4.3, -5.08)
+
+// === decoder arrows
+Line -> from dec_in.n to dec_emb.s
+Line -> from dec_emb.n to dec_plus.s
+Line -> from dec_plus.n to dec_masked.s
+Line -> from dec_pe.e to dec_plus.w
+
+Line -> from dec_masked.n to dec_n1.s
+Line -> from dec_n1.n to dec_cross.s
+Line -> from dec_cross.n to dec_n2.s
+Line -> from dec_n2.n to dec_ffn.s
+Line -> from dec_ffn.n to dec_n3.s
+
+// === output arrows
+Line -> from dec_n3.n to linear.s
+Line -> from linear.n to softmax.s
+Line -> from softmax.n to out.s
+
+// === stack labels
+Label ("Encoder × N" fill #5A6478 11.5pt font_weight bold) with .w at (0.85, -4.56)
+Label ("Decoder × N" fill #5A6478 11.5pt font_weight bold) with .w at (6.0, -5.74)
+
+// === legend
+Label ("图例" fill #5A6478 11pt font_weight bold) with .w at (0, -7.15)
+
+Box "" wid .26 ht .14 fill #DCE8F7 stroke #7FA3C8 at (0.13, -6.85)
+Label ("注意力子层" fill #5A6478 10pt) with .w at (0.34, -6.85)
+
+Box "" wid .26 ht .14 fill #E4EFE3 stroke #8FB894 at (0.13, -6.6)
+Label ("前馈网络（FFN）" fill #5A6478 10pt) with .w at (0.34, -6.6)
+
+Box "" wid .26 ht .14 fill #EFE6F5 stroke #B49BC9 at (0.13, -6.35)
+Label ("Add & Norm：残差 + 层归一化" fill #5A6478 10pt) with .w at (0.34, -6.35)
+
+Line from (0, -6.1) to (0.26, -6.1) stroke #B45309 thick .028
+Label ("编码器输出 → 解码器的 K、V" fill #5A6478 10pt) with .w at (0.34, -6.1)
+
+Label ("N 为堆叠层数，原论文中 N = 6" fill #8A8272 9pt) with .w at (0, -5.67)

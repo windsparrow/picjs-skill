@@ -1,0 +1,30 @@
+// Figure 2 — one sublayer: residual connection + LayerNorm
+// The title and caption are single-line CJK labels; their anchors were nudged
+// left after measuring the render (picjs estimates width at 0.52em/char).
+Label ("一个子层内部：残差连接 + LayerNorm" fill #1F2430 13pt font_weight bold) with .c at (2.287, -0.95)
+
+Line.stroke = #6B7280
+Line.thickness = .022
+Box.rx = .08
+Box.ry = .08
+
+xlab = Label ("x" fill #1F2430 13pt font_weight bold) at (-0.55, 0)
+
+sublayer = Box ("""**Sublayer**
+自注意力 / 前馈网络""" 10pt fill #1F2430) wid 1.9 ht .7 fill #DCE8F7 stroke #7FA3C8 at (1.7, 0)
+
+plus = Box ("+" fill #1F2430 12pt font_weight bold) wid .3 ht .3 fill #FFFFFF stroke #6B7280 at (3.4, 0)
+
+norm = Box ("""**LayerNorm**
+层归一化""" 10pt fill #1F2430) wid 1.45 ht .7 fill #EFE6F5 stroke #B49BC9 at (4.85, 0)
+
+ylab = Label ("y" fill #1F2430 13pt font_weight bold) at (6.45, 0)
+
+Line -> from (-0.35, 0) to sublayer.w
+Line -> from sublayer.e to plus.w
+Line -> from plus.e to norm.w
+Line -> from norm.e to (6.15, 0)
+
+Line -> from (0.35, 0) then to (0.35, 1.0) then to (3.4, 1.0) then to plus.s radius .12
+
+Label ("残差：把 x 原样加回子层的输出" fill #B45309 9.5pt) at (1.434, 1.22)

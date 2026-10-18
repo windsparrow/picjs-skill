@@ -1,0 +1,164 @@
+# PicJS History
+
+## 0.4.0
+
+* Refer to earlier shapes by when they were drawn: `last box`, `2nd circle`, `second last line`,
+  `first Shape`. They work anywhere a shape does, including constraints, `move`, `set` and
+  assignments, and keep referring to the same shape after more are drawn
+* Fix changing a palette-colored shape's color after creating it (`b.fill = ~b5`, or animating it
+  with `set`) having no visible effect; labels inside it now re-color to match
+* Fix the built library failing to render an empty diagram, or one that draws nothing
+* Fix assigning a shape's `x`, `y`, `width` or `height` after creating it (`b.width = 3`), which
+  failed; `x` and `y` now move the shape, and can be animated with `set`
+* Fix a shape at x or y = 0 reporting it as -1
+* Fix a group's opacity being applied twice, so its contents were fainter than asked (and a
+  shape's own opacity inside it was replaced rather than combined)
+* Copying a palette color from one shape to another (`circle fill b.fill`) keeps it a palette
+  color, so the copy still follows the light or dark theme
+* Fix a label's `font` returning a broken font rather than the one it was given; asking a shape for
+  a color it doesn't have (a line's `fill`) is an error that says so
+* A line's `from`, `to` and `then`, and a shape's `with ... at`, must be a position or a shape:
+  anything else (`line from 3`) was taken as a point, which broke the drawing. A line's distances
+  (`line right 2`), a color model's values (`rgb(...)`) and comparisons (`<`) check theirs too
+* Native functions (`sin`, `polar`, a color's `darken` and `spin`, a number's `times`, a list's
+  `each` and `map`, a range's `ease`, and others) report an argument of the wrong kind, rather
+  than giving a wrong answer or failing obscurely; so do assignments of the wrong kind to a
+  position's or shape's `x` and `y`, `@.now`, and `set` to a different kind of value
+* Report a bad `take`, calling something that isn't a function, a list index out of range or not a
+  number, arithmetic between a list and something other than a number or a list of the same
+  length, `^` on a value that doesn't support it, and `move` given something other than a shape or
+  one of its points (`move b.fill` was accepted, and broke the animation), as errors that say what
+  is wrong; an unknown attribute on a shape names the shape briefly ("for a Box")
+* `??` now shows shapes, colors and blocks as readable source
+* An arc's `turn` can be an angle: `Arc turn 45`, `Arc from (0,0) to (2,0) turn 270`. Positive
+  angles turn clockwise, as `Face`'s do (`turn 90` is `cw`, `turn -90` is `ccw`); an angle must
+  be between -360 and 360, and not 0. A bare arc turns the drawing direction by its angle.
+  Previously the angle was accepted and ignored
+* Fix arcs being cut off at the edge of the drawing: the canvas allowed for the box around an
+  arc's ends, not the curve, which bulges past them
+* Fix a line or arc drawn first, followed by a shape (`Line` then `Box`), being drawn with no length
+* Fix a shape's arguments running on into the lines after it: `a = Box` followed by lines
+  `b = Box` and `xs = 100` was read as one box sized `(b = Box) x (s = 100)`, and an unquoted font
+  family took the attributes after it (`font 24pt Georgia fill ~red` lost the fill). An unquoted
+  family now ends at the end of the line or at an attribute; quote it if anything else follows
+* A label's text can be a number, a position or a list (`Box (n)`), shown as it would be in a
+  string; this crashed before
+* Putting a shape in a string (`"a" + b`, `"#{b}"`) is an error, rather than a dump of its
+  internals; `?? b` still shows them
+* Error messages name values as you'd write them: strings in quotes, positions as `(1, 2)`.
+  Comparing a boolean or a color with the wrong kind of value reports where it happened
+* `each` is no longer accepted as a misspelling of the `ease` animation parameter
+* Drawings no longer carry attributes that aren't SVG (`fit="true"`, a circle's `x` and `y`, a
+  line's `x`, `y` and `rx`)
+* The playground's inspector names values by type (`Position`, `Box`), in the built library too
+* Docs: a new Grammar page, the language's annotated EBNF, generated from the parser's grammar
+
+## 0.3.0
+
+* Layouts separate an algorithm from its animation: `view = layout(fn)` positions shapes from your
+  program's data, and each `view.step()` animates every shape whose position changed
+* Layouts can set `take`, `ease` and `stagger`, and replace the default animations with
+  `view.transition`, `view.enter` and `view.exit`; shapes fade in and out as a layout starts and
+  stops placing them
+* Combine layouts with `+` to step them together
+* New examples: the Towers of Hanoi using a layout, and an animated bubble sort
+* Fix a shape's opacity not applying to its label, so labels stayed visible while their shape
+  faded
+* Vim support updated for the current syntax, with indentation; new Neovim plugin in `extras/nvim`
+* Docs: animation page split into primitives and higher-level animations, with breakdowns of the
+  layout-based Hanoi and bubble sort
+
+## 0.2.12
+
+* The package is now published as `@pragdave/picjs` (previously `@strike48/picjs`); update your imports and `npm install @pragdave/picjs`
+* Fix picjs failing to load under a Content-Security-Policy without `'unsafe-eval'` (WebViews, browser extensions, Electron apps, CSP-locked sites): theme expressions such as `=FS*4.5` are now evaluated without `Function()`
+* Groups can paint a background and pad their contents: `Group fill ~b3 stroke ~f1 radius .1 pad .3 { ... }`; `pad (x, y)` sets each axis
+* `Group` can carry shape defaults (`Group.fill = ~b3`); `padding`/`pad` can be set as a default
+* A newline in a label now breaks the line instead of reflowing to a space; a blank line still starts a paragraph, and indentation is stripped
+* Reject attributes a shape does not have with an error listing what it accepts, instead of silently ignoring them
+* Fix abbreviations (`wid`, `ht`, `rot`, `len`, `thick`) being ignored in shape defaults; `radius` in a default sets `rx`/`ry`
+* Fix `rotation` being ignored on arcs and polylines, and arcs leaking `turn`/`rotation` attributes into the SVG
+* Fix crashes: a shape-type default fill on any labelled shape, `fit`, `Skip x N y N`, and empty or shapeless programs
+* `fit` now works for single labels, and shrinks as well as grows
+* Implement `&&`, `||`, unary `!` (short-circuiting) and `%`; fix `==`/`!=` on booleans
+* Implement `smooth` and `stepped` for polylines, and fix them on short two-point lines
+* Add the documented `stroke_width` attribute to the grammar
+* `Shape.attr = ...` defaults are now read, and user defaults always win over built-ins
+* Labels reserve exactly the space they draw: font specs, markdown and links are measured as rendered
+* Fix diagrams clipping circles and rotated shapes: the viewBox is now measured from the space each shape occupies, and rotations use an exact degrees-to-radians factor
+* Fix a standalone label overflowing its own box
+* Fix `Goto 3` (a bare distance) placing the next shape at NaN, so it vanished
+* Fix the animation runtime dropping palette CSS, which turned palette-filled shapes black
+* CLI: `example` and `2up` blocks no longer show their source twice, `picjs process` exits non-zero when a diagram fails, and `--version` reports the real version
+* Docs: README rewritten; guide split into drawing, language, animation and integrating pages; reference organised by shape; new page on how layout works
+
+## 0.2.11
+
+* Fix SSR label size estimates ignoring `maxwidth` wrapping, `line_height` and paragraph spacing, which inflated or clipped the viewBox (#6)
+
+## 0.2.10
+
+* Fix the space before `&` disappearing in link labels (#5)
+* Remove the build-stamp watermark from rendered SVGs
+
+## 0.2.9
+
+* Markdown `[text](url)` links in labels render as real links (URL scheme sanitized) instead of being discarded
+* Fix `**bold**` in labels rendering as plain text
+
+## 0.2.8
+
+* No changes (version bump only)
+
+## 0.2.7
+
+* Add a default export for jiti/CJS compatibility
+* Docusaurus plugin (`extras/plugins/docusaurus`): remark plugin, Prism language definition and styles
+
+## 0.2.6
+
+* CLI: fix dependency loading, replace code blocks in plain mode (source kept in a comment), re-render standalone rendered blocks, report counts in verbose mode, show help after unknown commands
+
+## 0.2.5
+
+* Improve light-mode palette colors (pastel remap instead of muddy luma inversion)
+* Allow palettes to define explicit `lightColors` overrides (sunset has hand-tuned set)
+* Emit explicit dark text for labels in light mode instead of relying on `currentColor`
+* Remove `.v1`–`.v4` shape variant classes; simplify `.h1`–`.h4` label classes to only set alignment and size
+* Allow `font_weight`, `font_style`, `font_variant`, `font_stretch` as standalone Label attributes
+* Fix `behind` constraint not working inside groups
+* Fix `self.internal` broken in nested groups (inner group clobbered outer `self` binding)
+* Line labels default to "above" with proper gap from the line path
+* Use `currentColor` for label fills so they inherit page foreground correctly
+* Fix renderAll by attaching SVG to DOM before rendering
+
+## 0.2.4
+
+* Add palette CSS style block to browser renderAll/render output
+
+## 0.2.3
+
+* Fix renderToString crash on labelled shapes in browser environments
+
+## 0.2.2
+
+* Fix rich label fill color being ignored
+* Preserve individual label styling in multi-label shapes
+* Fix palette color fills in labels (e.g., `~b6`)
+* Allow `font_size` before or after label text
+* Convert font sizes with units (pt, px, etc) to internal coordinates
+* Rich labels with font_size units now compute valid dimensions
+* Add directional line syntax (`line right 2`, `line right 2 up 1`)
+
+## 0.2.1
+
+* Fix issue with palettes and dark/light mode
+* Fix arrows and end points of curved lines which meet shapes at an angle
+
+## 0.2.0
+
+* Initial public release
+
+## 0.1.0
+
+* Prototype
