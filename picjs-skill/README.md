@@ -2,7 +2,7 @@
 
 > English readers: the skill entry [`SKILL.md`](SKILL.md) and the guides in [`docs/`](docs/) are in English. This README is in Chinese.
 
-一个 [picjs](https://github.com/pragdave/picjs) 技能包：**用法说明 + 官方文档快照 + 官方示例 + 实战示例 + 渲染/更新脚本**。picjs 运行时不在包里，首次使用时从 npm 在线安装到缓存。
+一个 [picjs](https://github.com/pragdave-devo/picjs) 技能包：**用法说明 + 官方文档快照 + 官方示例 + 实战示例 + 渲染/更新脚本**。picjs 运行时不在包里，首次使用时从 npm 在线安装到缓存。
 
 picjs 是 Dave Thomas 写的约束式 SVG 绘图语言，用文本描述图形，由它计算布局。适合需要精确控制位置、配色、标注的架构图、流程图、示意图和动画。
 
@@ -159,10 +159,12 @@ bash scripts/update-from-upstream.sh --check
 
 上游信息：
 
-- 仓库：<https://github.com/pragdave/picjs>
-- 文档：<https://pragdave.github.io/picjs/>
+- 原始仓库（0.2.11 及以前的完整历史）：<https://github.com/pragdave-devo/picjs>
+- 当前仓库（0.3.0 / 0.4.0，本 skill 跟的发布线）：<https://github.com/pragdave/picjs>
+- 文档（0.4.0）：<https://pragdave.github.io/picjs/>
 - 在线 playground：<https://pragdave.github.io/picjs/editor/>
-- npm：<https://www.npmjs.com/package/@pragdave/picjs>
+- npm（当前）：<https://www.npmjs.com/package/@pragdave/picjs>
+- npm（原始 scope）：<https://www.npmjs.com/package/@strike48/picjs>
 - 版本 JSON：<https://registry.npmjs.org/@pragdave%2Fpicjs>
 
 升级前建议先看 `references/history.md`。0.x 版本之间可能有语法/行为变化。

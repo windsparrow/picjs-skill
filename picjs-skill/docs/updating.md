@@ -7,24 +7,36 @@ The runtime version is pinned in `scripts/ensure-picjs.sh` (`PICJS_VERSION`).
 
 | What | URL |
 |---|---|
-| Repository | https://github.com/pragdave/picjs |
-| Docs home | https://pragdave.github.io/picjs/ |
+| Original repository (through 0.2.11) | https://github.com/pragdave-devo/picjs |
+| Current repository (0.2.12+) | https://github.com/pragdave/picjs |
+| Docs home (0.4.0) | https://pragdave.github.io/picjs/ |
 | Guide | https://pragdave.github.io/picjs/guide/ |
 | Full reference | https://pragdave.github.io/picjs/picjs-reference/ |
 | Playground | https://pragdave.github.io/picjs/editor/ |
-| npm page | https://www.npmjs.com/package/@pragdave/picjs |
+| npm package (current) | https://www.npmjs.com/package/@pragdave/picjs |
+| npm package (original scope) | https://www.npmjs.com/package/@strike48/picjs |
 | Registry JSON (latest version) | https://registry.npmjs.org/@pragdave%2Fpicjs |
 | Repo file tree (find renamed docs) | https://api.github.com/repos/pragdave/picjs/git/trees/main?recursive=1 |
 
-## Which repository is authoritative
+## Repository provenance
 
-Use **`pragdave/picjs`**: it is the `repository` field of the published npm
-package, and it is what `update-from-upstream.sh` clones.
+The project began in **`pragdave-devo/picjs`** (created 2026-03-12; 269 commits;
+tags through `v0.2.11`; npm scope `@strike48`). That is the **original**
+repository and the place to cite as the project's origin.
 
-`pragdave-devo/picjs` is an older public copy (its README points at
-`pragdave-devo.github.io`) and **lags behind** (at the 0.4.0 sync it was still at
-package `0.2.11` / `@strike48/picjs`, with a 354-line `skills/picjs.md` against
-the canonical 372 lines). Its `skills/` files are older, so do not sync from it.
+Releases 0.2.12 → 0.4.0 moved to Dave Thomas's personal account:
+**`pragdave/picjs`** (a fork created 2026-09-26; tags `v0.3.0`, `v0.4.0`; npm
+scope `@pragdave`). `HISTORY.md` records the move: “The package is now published
+as `@pragdave/picjs` (previously `@strike48/picjs`)”. The 0.4.0 docs site
+(<https://pragdave.github.io/picjs/>) documents features (such as `last box` /
+`2nd last`) that the older <https://pragdave-devo.github.io/picjs/> does not.
+
+This skill pins the **0.4.0** runtime, so `update-from-upstream.sh` syncs from
+`pragdave/picjs`; the original repository is the reference for provenance and for
+the 0.2.x line. To track 0.2.x deliberately, point `PICJS_REPO_URL` and
+`PICJS_VERSION` at `pragdave-devo/picjs` / `@strike48/picjs@0.2.11`, then re-check
+the guides: some features this skill documents (referred shapes, palette fixes,
+`??` on blocks) do not exist there.
 
 The two official skills are vendored **verbatim** as
 `../references/upstream-skill.md` and `../references/upstream-skill-animation.md`;

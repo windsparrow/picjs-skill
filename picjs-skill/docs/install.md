@@ -4,6 +4,12 @@ The **skill** (this folder) and the **picjs runtime** (the npm package) are
 separate. The runtime is installed online from npm into a cache, so this skill
 does not store `node_modules`.
 
+> **Package lineage.** The project's original repository is
+> <https://github.com/pragdave-devo/picjs> (through 0.2.11, npm scope
+> `@strike48`). From 0.2.12 the package is published as `@pragdave/picjs` from
+> <https://github.com/pragdave/picjs>; `HISTORY.md` records the rename. This
+> skill pins the 0.4.0 runtime, so it installs `@pragdave/picjs`.
+
 ## 1. Install the skill (once per machine)
 
 The skill is a folder with `SKILL.md`. Put it where the agent scans skills:
