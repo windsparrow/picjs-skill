@@ -1,0 +1,107 @@
+<!-- picjs source:
+// 太阳系行星分布示意图
+// 轨道半径按 √(半长轴) 压缩，行星直径为示意放大，均非真实比例。
+// 画布坐标：太阳位于 (0, 0)，y 轴向下。
+
+paper   = #FAF7F2
+ink     = #1F2430
+muted   = #5A6478
+orbit_c = #DCD5C8
+
+// === 轨道（由外向内绘制，填充纸色以避免相互遮挡）===
+Circle rad 4.94 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 3.94 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 2.79 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 2.05 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 1.11 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 0.90 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 0.76 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 0.56 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+
+// === 太阳与光晕 ===
+Circle rad 0.58 fill #F7D98E opacity .30 at (0, 0)
+Circle rad 0.46 fill #F5CC6E opacity .35 at (0, 0)
+Circle rad 0.34 fill #F2B705 stroke #C98A00 thickness .012 at (0, 0)
+Label ("太阳" fill #FFFFFF 9pt font_weight bold) with .c at (-0.005, 0.005)
+
+// === 行星位置 ===
+// 角度采用屏幕坐标（y 向下）；半径已按 √(AU) 压缩。
+mr = 0.56
+vr = 0.76
+er = 0.90
+ar = 1.11
+jr = 2.05
+sr = 2.79
+ur = 3.94
+nr = 4.94
+
+mr_ang = 205
+vr_ang = 330
+er_ang = 75
+ar_ang = 150
+jr_ang = 280
+sr_ang = 30
+ur_ang = 225
+nr_ang = 115
+
+mx = mr * cos(mr_ang)
+my = mr * sin(mr_ang)
+vx = vr * cos(vr_ang)
+vy = vr * sin(vr_ang)
+ex = er * cos(er_ang)
+ey = er * sin(er_ang)
+ax = ar * cos(ar_ang)
+ay = ar * sin(ar_ang)
+jx = jr * cos(jr_ang)
+jy = jr * sin(jr_ang)
+sx = sr * cos(sr_ang)
+sy = sr * sin(sr_ang)
+ux = ur * cos(ur_ang)
+uy = ur * sin(ur_ang)
+nx = nr * cos(nr_ang)
+ny = nr * sin(nr_ang)
+
+// === 行星本体 ===
+// 水星
+Circle rad .045 fill #9CA3AF stroke #6B7280 thickness .008 at (mx, my)
+// 金星
+Circle rad .075 fill #D9A45B stroke #B7791F thickness .008 at (vx, vy)
+// 地球
+Circle rad .080 fill #4A90B8 stroke #2C6E91 thickness .008 at (ex, ey)
+// 火星
+Circle rad .055 fill #C0563B stroke #8E3B28 thickness .008 at (ax, ay)
+// 木星
+Circle rad .220 fill #C99A6B stroke #9C7347 thickness .008 at (jx, jy)
+// 土星（先画光环，再画本体）
+Ellipse rx .340 ry .085 fill paper stroke #B08A52 thickness .016 rotation -18 at (sx, sy)
+Circle rad .190 fill #D9B36C stroke #A67C3D thickness .008 at (sx, sy)
+// 天王星
+Circle rad .130 fill #7FB6C4 stroke #4E8E9D thickness .008 at (ux, uy)
+// 海王星
+Circle rad .125 fill #4A6FA5 stroke #2F4F7A thickness .008 at (nx, ny)
+
+// === 行星名称与轨道半长轴 ===
+Label ("""**水星**
+0.39 AU""" fill ink 9.5pt) with .c at ((mr + .32) * cos(mr_ang), (mr + .32) * sin(mr_ang))
+Label ("""**金星**
+0.72 AU""" fill ink 9.5pt) with .c at ((vr + .32) * cos(vr_ang), (vr + .32) * sin(vr_ang))
+Label ("""**地球**
+1.00 AU""" fill ink 9.5pt) with .c at ((er + .34) * cos(er_ang), (er + .34) * sin(er_ang))
+Label ("""**火星**
+1.52 AU""" fill ink 9.5pt) with .c at ((ar + .34) * cos(ar_ang), (ar + .34) * sin(ar_ang))
+Label ("""**木星**
+5.20 AU""" fill ink 10pt) with .c at ((jr + .44) * cos(jr_ang), (jr + .44) * sin(jr_ang))
+Label ("""**土星**
+9.58 AU""" fill ink 10pt) with .c at ((sr + .46) * cos(sr_ang), (sr + .46) * sin(sr_ang))
+Label ("""**天王星**
+19.2 AU""" fill ink 10pt) with .c at ((ur + .44) * cos(ur_ang), (ur + .44) * sin(ur_ang))
+Label ("""**海王星**
+30.1 AU""" fill ink 10pt) with .c at ((nr + .44) * cos(nr_ang), (nr + .44) * sin(nr_ang))
+
+// === 标题与注释 ===
+Label ("太阳系行星分布示意图" fill ink 20pt font_weight bold) with .c at (-0.73, -5.95)
+Label ("""轨道距离按 √(半长轴) 压缩
+行星直径为示意放大，未按真实比例""" fill muted 10pt) with .c at (0, 5.78)
+
+-->
+<svg viewBox="-5.140000000000001 -6.316666666666667 10.280000000000001 12.463333333333335" class="_myopic-1" xmlns="http://www.w3.org/2000/svg"><rect x="-5.140000000000001" y="-6.316666666666667" width="10.280000000000001" height="12.463333333333335" fill="#FAF7F2"/><circle r="4.94" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-1"></circle><circle r="3.94" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-2"></circle><circle r="2.79" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-3"></circle><circle r="2.05" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-4"></circle><circle r="1.11" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-5"></circle><circle r="0.9" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-6"></circle><circle r="0.76" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-7"></circle><circle r="0.56" fill="#faf7f2" stroke="#dcd5c8" stroke-width="0.009" cx="0" cy="0" stroke-dasharray="0.018,0.009" data-jp-id="SCircle-8"></circle><circle r="0.58" fill="#f7d98e" stroke="none" stroke-width="0.015" opacity="0.3" cx="0" cy="0" data-jp-id="SCircle-9"></circle><circle r="0.46" fill="#f5cc6e" stroke="none" stroke-width="0.015" opacity="0.35" cx="0" cy="0" data-jp-id="SCircle-10"></circle><circle r="0.34" fill="#f2b705" stroke="#c98a00" stroke-width="0.012" cx="0" cy="0" data-jp-id="SCircle-11"></circle><text fill="#ffffff" font-family="Roboto, sans-serif" font-size="0.125" font-style="normal" font-variant="normal" font-weight="bold" font-stretch="normal" x="-0.0625" y="-0.06999999999999999" dominant-baseline="text-before-edge" data-jp-id="SLabel-12">太阳</text><circle r="0.045" fill="#9ca3af" stroke="#6b7280" stroke-width="0.008" cx="-0.5075323607405241" cy="-0.2366662265747916" data-jp-id="SCircle-13"></circle><circle r="0.075" fill="#d9a45b" stroke="#b7791f" stroke-width="0.008" cx="0.6581793068761732" cy="-0.38000000000000034" data-jp-id="SCircle-14"></circle><circle r="0.08" fill="#4a90b8" stroke="#2c6e91" stroke-width="0.008" cx="0.23293714059226867" cy="0.8693332436601615" data-jp-id="SCircle-15"></circle><circle r="0.055" fill="#c0563b" stroke="#8e3b28" stroke-width="0.008" cx="-0.9612881982007271" cy="0.5549999999999999" data-jp-id="SCircle-16"></circle><circle r="0.22" fill="#c99a6b" stroke="#9c7347" stroke-width="0.008" cx="0.3559787642172064" cy="-2.0188558936750267" data-jp-id="SCircle-17"></circle><ellipse rx="0.34" ry="0.085" fill="#faf7f2" stroke="#b08a52" stroke-width="0.016" cx="2.416210876558584" cy="1.3949999999999998" transform="rotate(-18, 2.416210876558584, 1.3949999999999998)" data-jp-id="SEllipse-18"></ellipse><circle r="0.19" fill="#d9b36c" stroke="#a67c3d" stroke-width="0.008" cx="2.416210876558584" cy="1.3949999999999998" data-jp-id="SCircle-19"></circle><circle r="0.13" fill="#7fb6c4" stroke="#4e8e9d" stroke-width="0.008" cx="-2.7860007178749977" cy="-2.786000717874997" data-jp-id="SCircle-20"></circle><circle r="0.125" fill="#4a6fa5" stroke="#2f4f7a" stroke-width="0.008" cx="-2.087734212999055" cy="4.477160467961052" data-jp-id="SCircle-21"></circle><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.13194444444444445" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="-1.0099814081478078" y="-0.5302374036651487" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-22"><tspan x="-0.7975508525922521"><tspan font-weight="bold">水星</tspan></tspan><tspan x="-0.7975508525922521" dy="0.15833333333333333">0.39 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.13194444444444445" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="0.7228768805316379" y="-0.6983333333333338" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-23"><tspan x="0.9353074360871935"><tspan font-weight="bold">金星</tspan></tspan><tspan x="0.9353074360871935" dy="0.15833333333333333">0.72 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.13194444444444445" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="0.10850506037157015" y="1.0394146912651112" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-24"><tspan x="0.3209356159271257"><tspan font-weight="bold">地球</tspan></tspan><tspan x="0.3209356159271257" dy="0.15833333333333333">1.00 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.13194444444444445" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="-1.468167391042992" y="0.5666666666666667" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-25"><tspan x="-1.2557368354874363"><tspan font-weight="bold">火星</tspan></tspan><tspan x="-1.2557368354874363" dy="0.15833333333333333">1.52 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="0.20877285127954442" y="-2.6188379716670647" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-26"><tspan x="0.4323839623906556"><tspan font-weight="bold">木星</tspan></tspan><tspan x="0.4323839623906556" dy="0.16666666666666666">5.20 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="2.590971451188315" y="1.458333333333333" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-27"><tspan x="2.814582562299426"><tspan font-weight="bold">土星</tspan></tspan><tspan x="2.814582562299426" dy="0.16666666666666666">9.58 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="-3.3207388127081896" y="-3.2637943682637442" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-28"><tspan x="-3.0971277015970786"><tspan font-weight="bold">天王星</tspan></tspan><tspan x="-3.0971277015970786" dy="0.16666666666666666">19.2 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="-2.497297359276074" y="4.709269227590511" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-29"><tspan x="-2.273686248164963"><tspan font-weight="bold">海王星</tspan></tspan><tspan x="-2.273686248164963" dy="0.16666666666666666">30.1 AU</tspan></text><text fill="#1f2430" font-family="Roboto, sans-serif" font-size="0.2777777777777778" font-style="normal" font-variant="normal" font-weight="bold" font-stretch="normal" x="-1.3688888888888888" y="-6.116666666666667" dominant-baseline="text-before-edge" data-jp-id="SLabel-30">太阳系行星分布示意图</text><text fill="#5a6478" font-family="Roboto, sans-serif" font-size="0.1388888888888889" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" x="-0.5111111111111112" y="5.613333333333333" dominant-baseline="text-before-edge" text-anchor="middle" data-jp-id="SLabel-31"><tspan x="0">轨道距离按 √(半长轴) 压缩</tspan><tspan x="0" dy="0.16666666666666666">行星直径为示意放大，未按真实比例</tspan></text></svg>

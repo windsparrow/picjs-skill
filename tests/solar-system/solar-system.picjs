@@ -1,0 +1,103 @@
+// 太阳系行星分布示意图
+// 轨道半径按 √(半长轴) 压缩，行星直径为示意放大，均非真实比例。
+// 画布坐标：太阳位于 (0, 0)，y 轴向下。
+
+paper   = #FAF7F2
+ink     = #1F2430
+muted   = #5A6478
+orbit_c = #DCD5C8
+
+// === 轨道（由外向内绘制，填充纸色以避免相互遮挡）===
+Circle rad 4.94 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 3.94 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 2.79 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 2.05 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 1.11 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 0.90 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 0.76 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+Circle rad 0.56 fill paper stroke orbit_c thickness .009 dashed at (0, 0)
+
+// === 太阳与光晕 ===
+Circle rad 0.58 fill #F7D98E opacity .30 at (0, 0)
+Circle rad 0.46 fill #F5CC6E opacity .35 at (0, 0)
+Circle rad 0.34 fill #F2B705 stroke #C98A00 thickness .012 at (0, 0)
+Label ("太阳" fill #FFFFFF 9pt font_weight bold) with .c at (-0.005, 0.005)
+
+// === 行星位置 ===
+// 角度采用屏幕坐标（y 向下）；半径已按 √(AU) 压缩。
+mr = 0.56
+vr = 0.76
+er = 0.90
+ar = 1.11
+jr = 2.05
+sr = 2.79
+ur = 3.94
+nr = 4.94
+
+mr_ang = 205
+vr_ang = 330
+er_ang = 75
+ar_ang = 150
+jr_ang = 280
+sr_ang = 30
+ur_ang = 225
+nr_ang = 115
+
+mx = mr * cos(mr_ang)
+my = mr * sin(mr_ang)
+vx = vr * cos(vr_ang)
+vy = vr * sin(vr_ang)
+ex = er * cos(er_ang)
+ey = er * sin(er_ang)
+ax = ar * cos(ar_ang)
+ay = ar * sin(ar_ang)
+jx = jr * cos(jr_ang)
+jy = jr * sin(jr_ang)
+sx = sr * cos(sr_ang)
+sy = sr * sin(sr_ang)
+ux = ur * cos(ur_ang)
+uy = ur * sin(ur_ang)
+nx = nr * cos(nr_ang)
+ny = nr * sin(nr_ang)
+
+// === 行星本体 ===
+// 水星
+Circle rad .045 fill #9CA3AF stroke #6B7280 thickness .008 at (mx, my)
+// 金星
+Circle rad .075 fill #D9A45B stroke #B7791F thickness .008 at (vx, vy)
+// 地球
+Circle rad .080 fill #4A90B8 stroke #2C6E91 thickness .008 at (ex, ey)
+// 火星
+Circle rad .055 fill #C0563B stroke #8E3B28 thickness .008 at (ax, ay)
+// 木星
+Circle rad .220 fill #C99A6B stroke #9C7347 thickness .008 at (jx, jy)
+// 土星（先画光环，再画本体）
+Ellipse rx .340 ry .085 fill paper stroke #B08A52 thickness .016 rotation -18 at (sx, sy)
+Circle rad .190 fill #D9B36C stroke #A67C3D thickness .008 at (sx, sy)
+// 天王星
+Circle rad .130 fill #7FB6C4 stroke #4E8E9D thickness .008 at (ux, uy)
+// 海王星
+Circle rad .125 fill #4A6FA5 stroke #2F4F7A thickness .008 at (nx, ny)
+
+// === 行星名称与轨道半长轴 ===
+Label ("""**水星**
+0.39 AU""" fill ink 9.5pt) with .c at ((mr + .32) * cos(mr_ang), (mr + .32) * sin(mr_ang))
+Label ("""**金星**
+0.72 AU""" fill ink 9.5pt) with .c at ((vr + .32) * cos(vr_ang), (vr + .32) * sin(vr_ang))
+Label ("""**地球**
+1.00 AU""" fill ink 9.5pt) with .c at ((er + .34) * cos(er_ang), (er + .34) * sin(er_ang))
+Label ("""**火星**
+1.52 AU""" fill ink 9.5pt) with .c at ((ar + .34) * cos(ar_ang), (ar + .34) * sin(ar_ang))
+Label ("""**木星**
+5.20 AU""" fill ink 10pt) with .c at ((jr + .44) * cos(jr_ang), (jr + .44) * sin(jr_ang))
+Label ("""**土星**
+9.58 AU""" fill ink 10pt) with .c at ((sr + .46) * cos(sr_ang), (sr + .46) * sin(sr_ang))
+Label ("""**天王星**
+19.2 AU""" fill ink 10pt) with .c at ((ur + .44) * cos(ur_ang), (ur + .44) * sin(ur_ang))
+Label ("""**海王星**
+30.1 AU""" fill ink 10pt) with .c at ((nr + .44) * cos(nr_ang), (nr + .44) * sin(nr_ang))
+
+// === 标题与注释 ===
+Label ("太阳系行星分布示意图" fill ink 20pt font_weight bold) with .c at (-0.73, -5.95)
+Label ("""轨道距离按 √(半长轴) 压缩
+行星直径为示意放大，未按真实比例""" fill muted 10pt) with .c at (0, 5.78)
