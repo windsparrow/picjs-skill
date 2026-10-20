@@ -16,6 +16,22 @@ The runtime version is pinned in `scripts/ensure-picjs.sh` (`PICJS_VERSION`).
 | Registry JSON (latest version) | https://registry.npmjs.org/@pragdave%2Fpicjs |
 | Repo file tree (find renamed docs) | https://api.github.com/repos/pragdave/picjs/git/trees/main?recursive=1 |
 
+## Which repository is authoritative
+
+Use **`pragdave/picjs`**: it is the `repository` field of the published npm
+package, and it is what `update-from-upstream.sh` clones.
+
+`pragdave-devo/picjs` is an older public copy (its README points at
+`pragdave-devo.github.io`) and **lags behind** (at the 0.4.0 sync it was still at
+package `0.2.11` / `@strike48/picjs`, with a 354-line `skills/picjs.md` against
+the canonical 372 lines). Its `skills/` files are older, so do not sync from it.
+
+The two official skills are vendored **verbatim** as
+`../references/upstream-skill.md` and `../references/upstream-skill-animation.md`;
+the update script overwrites them. Put local corrections in `docs/gotchas.md` or
+`docs/animation.md` instead of editing the snapshot, or the next sync will lose
+them.
+
 ## Check and update the runtime
 
 ```bash

@@ -73,8 +73,8 @@ box "Client" -> box "API Gateway" -> box "Service" -> box "Database"
 ## Features
 
 - **On-demand loading** — `SKILL.md` is a small entry guide (~170 lines); syntax,
-  layout, centering, rendering, gotchas, and updating live in `docs/` and are read
-  only when needed.
+  animation, layout, centering, rendering, gotchas, and updating live in `docs/`
+  and are read only when needed.
 - **Online runtime install** — `scripts/ensure-picjs.sh` installs
   `@pragdave/picjs` from npm into `${PICJS_HOME:-~/.cache/picjs-skill}`; there is
   no `node_modules` in this repository.
@@ -144,7 +144,7 @@ The Transformer walkthrough in `examples/transformer/notes.md` is in Chinese.
     ├── SKILL.md                  # compact entry (install check + routing)
     ├── README.md                 # detailed Chinese overview
     ├── package.json              # scripts only; no runtime dependency
-    ├── docs/                     # 9 on-demand guides (English)
+    ├── docs/                     # 10 on-demand guides (English)
     ├── references/               # upstream docs snapshot
     ├── examples/
     │   ├── transformer/          # 3 figures + PNG/SVG + notes.md

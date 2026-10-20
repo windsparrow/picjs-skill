@@ -5,6 +5,10 @@
 - `renderToStringAsync` resets the palette to **`sunset`** and uses the **dark
   theme** colours. Default label fill is a light cream, which is invisible on a
   white page.
+- A program can change the palette with `Palette.current = "ocean"` (other names:
+  `default`, `misty`, `forest`, `warm`, `mono`, `starfish`, `shuksan`, `bay`,
+  `lake`, `cascades`), which changes the `~b1`/`~f1` slots. The theme is still
+  dark, so a light document still needs explicit colours.
 - For a light document, set **explicit** colours:
   - background `#FAF7F2` (via `PICJS_BG` or your own rect);
   - body text `#1F2430`, muted text `#5A6478`;

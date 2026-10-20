@@ -54,4 +54,50 @@ For a signal from one column to another, route orthogonally: out of the source,
 up/down into an empty lane, across, then into the target. Label the lane, not the
 elbow. Avoid diagonal wires in block diagrams.
 
+### Reusable component
+
+Wrap a repeated block in a function that returns a `Group`, then place copies
+with `with .nw at`. Name the parts you need to connect to with `self.`:
+
+```picjs
+drawServer = (name, pos) => {
+  Group {
+    Face s
+    Label "#{name}" .h4
+    Gap .1
+    self.app = Box "App" -> Box "DB"
+  } with .nw at pos
+}
+
+a = drawServer("Ingest", (0, 0))
+b = drawServer("Query", (3, 0))
+Line -> from a.app.e to b.app.w
+```
+
+### Connecting groups
+
+A group is positioned by its constraint, but its members keep their own names, so
+connect to `group.member.<cardinal>` rather than to the group's edge:
+
+```picjs
+a = Group { self.api = Box "API" }
+b = Group { self.handler = Box "Handler" } with .nw at (3, 0)
+Line -> from a.api.e to b.handler.w
+```
+
+### Flow chart one-liner
+
+`->` between boxes creates the next box and the arrow at the same time; a palette
+switch is often all the styling a small flow chart needs:
+
+```picjs
+Palette.current = "shuksan"
+box "Input" -> box "Process" fill ~b2 -> box "Output"
+```
+
+### Architecture skeleton
+
+For a larger diagram, start from explicit coordinates and keep the grid in
+variables (see “Explicit grid” above), then add groups for the boxes that repeat.
+
 ---

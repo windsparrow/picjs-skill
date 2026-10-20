@@ -17,7 +17,8 @@ picjs-skill/
 │   ├── install.md               # skill 安装 + 运行时在线安装
 │   ├── quickstart.md            # 第一张图、渲染、CLI/API
 │   ├── syntax.md                # 语法与速查表
-│   ├── layout.md                # 布局、容器、总线走线
+│   ├── animation.md             # 动画时间线、缓动、播放
+│   ├── layout.md                # 布局、容器、可复用组件、总线走线
 │   ├── centering.md             # 文字居中规则（含 CJK 修正）
 │   ├── rendering.md             # 主题、背景、PNG、Markdown
 │   ├── gotchas.md               # 实测坑位
@@ -115,6 +116,18 @@ bash scripts/install-skill.sh /path/to/skills
 - 图例/容器标签：用 `with .w` 左对齐，属于有意为之的例外。
 
 [`docs/centering.md`](docs/centering.md) 有完整规则和示例；Transformer 示例就是按这个约定画的。
+
+## 动画
+
+picjs 的动画挂在 `@` 时间线上：`@ += 1` 前进一秒，`move` / `rotate` / `set` / `draw`
+安排变化，`take` 设时长，`ease` 选缓动，`then` 串行，`@@` 跳到上一段动画结束。
+
+静态渲染（`render.mjs` 出的 PNG/SVG）只展示 **0 时刻**，所以动效要在浏览器运行时或
+playground 里看。0.4.0 有几个容易踩的点：`draw` / `nodraw` 只对线条有效（盒子要么在
+目标时刻再创建，要么用 `opacity` 淡入）；`ease` 没有 `sine*`；`Label` 后面不能直接跟
+变量名（用 `Label "#{name}"`）；`wait` 不是命令。
+
+[`docs/animation.md`](docs/animation.md) 有命令表、缓动清单和常用模式。
 
 ## 更新
 

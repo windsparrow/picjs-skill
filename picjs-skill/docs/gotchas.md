@@ -39,5 +39,25 @@
     creates two labels at the same point. Use one triple-quoted string with a
     real newline (see the centering section), or use a `Box`. Box labels stack
     correctly; standalone labels do not.
+13. **`wait` is not a command in 0.4.0.** The grammar keeps it commented out, so
+    `wait 2` is a parse error. Advance time with `@ += 2`, or stop playback with
+    `pause` / `pause "message"`.
+14. **`nodraw` and `draw` are line-only in 0.4.0.** `Line … nodraw` plus `draw`
+    traces the stroke; the renderers for boxes, circles, and labels ignore
+    `draw_progress`, so `draw` on them has no visible effect, and
+    `Box "A" nodraw` fails with “Variable 'nodraw' is not defined” (despite the
+    upstream quick-reference listing it as a general flag). For a non-line shape,
+    create it when it should appear (`@ += 1` then `Box "B"`) or animate
+    `opacity`.
+15. **`ease` has no `sine*` or `elastic`.** The upstream animation skill lists
+    `sineIn` / `sineOut` / `sineInOut`; 0.4.0 rejects them. Valid values:
+    `linear`, `cubicIn`, `cubicOut`, `cubicInOut`, `cubic`, `quadIn`, `quadOut`,
+    `quadInOut`, `quad`, `bounce`.
+16. **`??` logs to the console, not into the image.** It is a debugging aid while
+    iterating; the rendered SVG/PNG does not show the value.
+17. **`Label` needs a string, not a bare identifier.** `Box n` / `Box (n)` work,
+    but `Label n` is a parse error; write `Label (n) .h4` or
+    `Label "#{n}" .h4`. The official reusable-component example uses
+    `Label name .h4`, which fails on 0.4.0 for the same reason.
 
 ---

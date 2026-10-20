@@ -16,8 +16,8 @@
   move the layout cursor). `self.name = …` names a child for later reference.
 - **Program** with `x = …`, `(a, b) => …`, `if`, `[...]`, `.each`, `.map`,
   `n.times`, and interpolation `"value #{n}"`.
-- **Animate** on the `@` timeline with `move`, `set`, `draw`, `take`, `ease`,
-  `@@`, `pause`, `wait`, `rotate`.
+- **Animate** on the `@` timeline with `move`, `rotate`, `set`, `draw`, `take`,
+  `ease`, `then`, `@@`, and `pause`. See [animation.md](animation.md).
 
 **Coordinate gotcha:** y grows **downward** (screen coordinates). So negative y is
 up; `Face south` increases y. A title above the drawing needs a negative y.
@@ -81,6 +81,25 @@ Box opacity .5
 Box rotation 45 about (0, 0)
 ```
 
+### Colours and palettes
+
+```picjs
+Palette.current = "ocean"      // default, misty, ocean, forest, warm, mono,
+                               // starfish, shuksan, bay, lake, cascades, sunset
+Box fill ~b1                   // palette background slot
+Box fill ~f1                   // palette foreground slot (contrasts with b1)
+Box fill #3a7                  // hex
+Box fill rgb(100, 200, 150)
+Box fill oklch(70%, .15, 200)
+Box fill hsl(200, 80%, 50%)
+~red.lighten(20%)
+~blue.darken(10%)
+~red.spin(120)                 // rotate hue
+```
+
+`Palette.current` and the slots are **dark-theme** colours (see
+[rendering.md](rendering.md)).
+
 ### Defaults and classes
 
 ```picjs
@@ -91,6 +110,8 @@ Line.stroke = ~f4
 Line.thickness = .03
 
 box "A" .highlight
+Box "A" .v1                    // built-in variants: .normal, .v1 … .v4
+Label "Title" .h1              // label classes: .h1 … .h4, .p
 ```
 
 ### Groups
@@ -104,6 +125,10 @@ g = Group {
 } with .nw at (0, 0)
 
 Line -> from g.top.e to other.w
+
+Aside {
+  Circle rad .15 at somePoint    // drawn, but does not move the cursor
+}
 ```
 
 ### Language
@@ -133,5 +158,13 @@ last Shape
 
 Ordinals: `first` … `tenth`, `1st`, `2nd`, `3rd`, `last`, `2nd last`,
 `second last`.
+
+### Debugging
+
+```picjs
+??x                    // log a value to the console
+??someBox              // log a shape's attributes
+??@                    // log the current timeline time
+```
 
 ---

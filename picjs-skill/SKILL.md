@@ -54,8 +54,9 @@ Full options and offline setup: [docs/install.md](docs/install.md).
 | Task | Read |
 |---|---|
 | First diagram, render SVG/PNG, CLI/API | [docs/quickstart.md](docs/quickstart.md) |
-| Syntax: shapes, lines, labels, colours, groups, functions, animation | [docs/syntax.md](docs/syntax.md) |
-| Layout: flow, constraints, grids, containers, bus routing | [docs/layout.md](docs/layout.md) |
+| Syntax: shapes, lines, labels, colours, groups, functions | [docs/syntax.md](docs/syntax.md) |
+| Animation: timeline, move/set/draw, easing, playback | [docs/animation.md](docs/animation.md) |
+| Layout: flow, constraints, grids, containers, reusable parts, bus routing | [docs/layout.md](docs/layout.md) |
 | Text centring: default rules, titles, CJK correction | [docs/centering.md](docs/centering.md) |
 | Rendering: themes, background, PNG, Markdown, browser API | [docs/rendering.md](docs/rendering.md) |
 | Errors, edge cases, version-specific traps | [docs/gotchas.md](docs/gotchas.md) |
@@ -67,6 +68,12 @@ For deep syntax, use the upstream snapshot:
 `references/picjs-reference.md` (full reference),
 `references/language.md` (variables/functions/control flow). These are large;
 open them only when the curated guides are not enough.
+
+The official upstream skills are vendored verbatim as
+`references/upstream-skill.md` and `references/upstream-skill-animation.md`. They
+are compact and good for a second opinion, but they can be **ahead of the pinned
+0.4.0 runtime** — where they disagree with `docs/gotchas.md`, the gotchas win.
+Verify a snippet before relying on it.
 
 ---
 
@@ -101,6 +108,10 @@ Start from the closest file in `examples/` instead of a blank page.
   from `PICJS_MODULE`, `PICJS_HOME`, or a local `node_modules` (skill or cwd).
 - **Palette slots are dark-theme** in `renderToStringAsync` (`~b1` / `~f1`).
   For light documents use explicit hex, or render on a dark background.
+- **Static renders show time 0.** Animation is scheduled on the `@` timeline, so
+  a PNG/SVG is a snapshot. Read [docs/animation.md](docs/animation.md) before
+  writing motion; `draw`/`nodraw` are line-only in 0.4.0 and `ease` has no
+  `sine*`.
 
 ---
 
@@ -145,6 +156,7 @@ picjs-skill/
 │   ├── install.md
 │   ├── quickstart.md
 │   ├── syntax.md
+│   ├── animation.md
 │   ├── layout.md
 │   ├── centering.md
 │   ├── rendering.md

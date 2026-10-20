@@ -68,7 +68,7 @@ box "Client" -> box "API Gateway" -> box "Service" -> box "Database"
 
 ## 特点
 
-- **按需加载**：`SKILL.md` 只是 170 行左右的入口，语法、布局、居中、渲染、坑位、更新分别放在 `docs/`，用哪块读哪块，避免一次撑爆上下文。
+- **按需加载**：`SKILL.md` 只是 170 行左右的入口，语法、动画、布局、居中、渲染、坑位、更新分别放在 `docs/`，用哪块读哪块，避免一次撑爆上下文。
 - **运行时在线安装**：`scripts/ensure-picjs.sh` 从 npm 安装 `@pragdave/picjs` 到 `${PICJS_HOME:-~/.cache/picjs-skill}`，仓库里没有 `node_modules`。
 - **安装状态分支**：`ensure-picjs.sh --check` 已安装就直接用；未安装才走在线安装。
 - **手动调用**：frontmatter 设置了 `disable-model-invocation: true`，不会被关键词自动触发；用 `/picjs` 或 `/` 菜单启动。
@@ -129,7 +129,7 @@ bash scripts/picjs-cli.sh process README.md
     ├── SKILL.md                  # 技能入口（安装检查 + 按需加载路由）
     ├── README.md                 # 技能包详细说明
     ├── package.json              # 只有脚本，无运行时依赖
-    ├── docs/                     # 9 个按需加载的使用指南
+    ├── docs/                     # 10 个按需加载的使用指南
     ├── references/               # 官方文档快照
     ├── examples/
     │   ├── transformer/          # Transformer 三张图 + PNG/SVG + notes.md
