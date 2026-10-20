@@ -2,3 +2,7 @@
 node_modules/
 .npm-cache/
 *.log
+
+# Locally installed third-party skills (cloned in .dsh/vendor, linked into .dsh/skills)
+/.dsh/vendor/
+/.dsh/skills/drawio-skill
