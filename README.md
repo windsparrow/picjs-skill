@@ -2,7 +2,7 @@
 
 **English** | [中文](README.zh.md)
 
-An Agent Skill package for [picjs](https://github.com/pragdave-devo/picjs): a compact,
+An Agent Skill package for [picjs](https://github.com/pragdave/picjs): a compact,
 on-demand guide to the language, an upstream documentation snapshot, examples, and
 render/update scripts.
 
@@ -10,20 +10,21 @@ Invoke it explicitly with `/picjs`. The picjs runtime is downloaded from npm int
 cache on first use; it is **not** vendored in this repository.
 
 > This repository is **not** picjs itself. It is a skill wrapper plus examples.
-> The language and runtime live in the picjs project — the original repository is
-> **<https://github.com/pragdave-devo/picjs>**; the 0.4.0 release line (which this
-> skill targets) is published from **<https://github.com/pragdave/picjs>**.
+> The language and runtime live in the official project,
+> **<https://github.com/pragdave/picjs>** (v0.4.0). The parent repository
+> <https://github.com/pragdave-devo/picjs> stopped at 0.2.11 and still documents
+> the old `@strike48/picjs` package — do not follow it.
 
 ## Upstream project
 
 | Item | Link |
 |---|---|
-| picjs original repository (through 0.2.11) | <https://github.com/pragdave-devo/picjs> |
-| picjs current repository (0.2.12+) | <https://github.com/pragdave/picjs> |
-| Documentation (0.4.0) | <https://pragdave.github.io/picjs/> |
+| picjs official repository (v0.4.0) | <https://github.com/pragdave/picjs> |
+| Legacy parent repository (0.2.11, stopped) | <https://github.com/pragdave-devo/picjs> |
+| Documentation | <https://pragdave.github.io/picjs/> |
 | Playground | <https://pragdave.github.io/picjs/editor/> |
-| npm package (current) | <https://www.npmjs.com/package/@pragdave/picjs> |
-| npm package (original scope) | <https://www.npmjs.com/package/@strike48/picjs> |
+| npm package (official) | <https://www.npmjs.com/package/@pragdave/picjs> |
+| npm package (legacy) | <https://www.npmjs.com/package/@strike48/picjs> |
 | Author | Dave Thomas |
 | License | MIT (see [`picjs-skill/LICENSE-picjs.md`](picjs-skill/LICENSE-picjs.md)) |
 | This repository | `https://github.com/<your-name>/<repo-name>` (replace after publishing) |
@@ -185,5 +186,5 @@ the snapshot file, and the full checklist.
 - Skill wrapper code and docs in this repository: MIT, see [`LICENSE`](LICENSE).
 - Upstream picjs, its docs and examples: MIT, Copyright © Dave Thomas, see
   [`picjs-skill/LICENSE-picjs.md`](picjs-skill/LICENSE-picjs.md).
-- Original project: <https://github.com/pragdave-devo/picjs>; current 0.4.0 release line:
-  <https://github.com/pragdave/picjs>
+- Official project: <https://github.com/pragdave/picjs>; legacy parent repository
+  (0.2.11, stopped): <https://github.com/pragdave-devo/picjs>

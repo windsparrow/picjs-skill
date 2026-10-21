@@ -7,36 +7,41 @@ The runtime version is pinned in `scripts/ensure-picjs.sh` (`PICJS_VERSION`).
 
 | What | URL |
 |---|---|
-| Original repository (through 0.2.11) | https://github.com/pragdave-devo/picjs |
-| Current repository (0.2.12+) | https://github.com/pragdave/picjs |
-| Docs home (0.4.0) | https://pragdave.github.io/picjs/ |
+| Official repository (v0.4.0) | https://github.com/pragdave/picjs |
+| Legacy parent repository (0.2.11, stopped) | https://github.com/pragdave-devo/picjs |
+| Docs home | https://pragdave.github.io/picjs/ |
 | Guide | https://pragdave.github.io/picjs/guide/ |
 | Full reference | https://pragdave.github.io/picjs/picjs-reference/ |
 | Playground | https://pragdave.github.io/picjs/editor/ |
-| npm package (current) | https://www.npmjs.com/package/@pragdave/picjs |
-| npm package (original scope) | https://www.npmjs.com/package/@strike48/picjs |
+| npm package (official) | https://www.npmjs.com/package/@pragdave/picjs |
+| npm package (legacy) | https://www.npmjs.com/package/@strike48/picjs |
 | Registry JSON (latest version) | https://registry.npmjs.org/@pragdave%2Fpicjs |
 | Repo file tree (find renamed docs) | https://api.github.com/repos/pragdave/picjs/git/trees/main?recursive=1 |
 
 ## Repository provenance
 
-The project began in **`pragdave-devo/picjs`** (created 2026-03-12; 269 commits;
-tags through `v0.2.11`; npm scope `@strike48`). That is the **original**
-repository and the place to cite as the project's origin.
+The **official** project is **`pragdave/picjs`** — v0.4.0, last commit 2026-10-06,
+npm `@pragdave/picjs`, docs at <https://pragdave.github.io/picjs/>. Use it for
+source, issues, PRs, and the runtime this skill pins.
 
-Releases 0.2.12 → 0.4.0 moved to Dave Thomas's personal account:
-**`pragdave/picjs`** (a fork created 2026-09-26; tags `v0.3.0`, `v0.4.0`; npm
-scope `@pragdave`). `HISTORY.md` records the move: “The package is now published
-as `@pragdave/picjs` (previously `@strike48/picjs`)”. The 0.4.0 docs site
-(<https://pragdave.github.io/picjs/>) documents features (such as `last box` /
-`2nd last`) that the older <https://pragdave-devo.github.io/picjs/> does not.
+**`pragdave-devo/picjs`** is the GitHub **parent** repository, left at 0.2.11
+(last commit 2026-09-27, npm `@strike48/picjs`). It is the work-account copy (Dave
+Thomas's `@devo` account); development moved to his personal `pragdave` account
+in a fork on 2026-09-26/27, and `HISTORY.md` records the package rename: “The
+package is now published as `@pragdave/picjs` (previously `@strike48/picjs`)”.
+The parent's README still says `npm install @strike48/picjs` — that address is
+**stale** and will mislead anyone who finds it. Its docs site
+(<https://pragdave-devo.github.io/picjs/>) also predates features this skill
+documents, such as `last box` / `2nd last`.
 
-This skill pins the **0.4.0** runtime, so `update-from-upstream.sh` syncs from
-`pragdave/picjs`; the original repository is the reference for provenance and for
-the 0.2.x line. To track 0.2.x deliberately, point `PICJS_REPO_URL` and
-`PICJS_VERSION` at `pragdave-devo/picjs` / `@strike48/picjs@0.2.11`, then re-check
-the guides: some features this skill documents (referred shapes, palette fixes,
-`??` on blocks) do not exist there.
+Because the move used a **fork** rather than GitHub's *Transfer ownership*, the
+parent kept its stars and remains what a plain GitHub search surfaces; the
+official repo is a fork, so it is hidden from search unless `fork:true` is used.
+Link to `pragdave/picjs` explicitly rather than relying on search.
+
+`update-from-upstream.sh` syncs from `pragdave/picjs`. Only pin 0.2.x
+(`PICJS_REPO_URL=pragdave-devo/picjs`, `@strike48/picjs@0.2.11`) if you
+deliberately need the legacy API; expect missing features.
 
 The two official skills are vendored **verbatim** as
 `../references/upstream-skill.md` and `../references/upstream-skill-animation.md`;

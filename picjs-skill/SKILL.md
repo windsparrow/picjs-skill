@@ -182,8 +182,8 @@ picjs-skill/
 ## 7. Attribution
 
 picjs is by **Dave Thomas** and is distributed under the **MIT License**.
-The project's original repository is
-<https://github.com/pragdave-devo/picjs> (through 0.2.11). The 0.4.0 release line
-this skill targets is published from <https://github.com/pragdave/picjs>; the
-bundled docs and examples are copied from it (snapshot noted in
-`references/upstream-snapshot.md`). Keep `LICENSE-picjs.md` with any redistribution.
+The official repository is <https://github.com/pragdave/picjs> (v0.4.0, npm
+`@pragdave/picjs`); the bundled docs and examples are copied from it (snapshot
+noted in `references/upstream-snapshot.md`). The GitHub parent repository
+<https://github.com/pragdave-devo/picjs> stopped at 0.2.11 (`@strike48/picjs`) and
+is kept only as history. Keep `LICENSE-picjs.md` with any redistribution.

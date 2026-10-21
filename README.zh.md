@@ -2,24 +2,25 @@
 
 [English](README.md) | **中文**
 
-一个面向 Agent 的 [picjs](https://github.com/pragdave-devo/picjs) 技能包：把 picjs 的用法、官方文档快照、示例、渲染与更新脚本打包成可按需加载的 skill。
+一个面向 Agent 的 [picjs](https://github.com/pragdave/picjs) 技能包：把 picjs 的用法、官方文档快照、示例、渲染与更新脚本打包成可按需加载的 skill。
 
 支持 `/picjs` 手动调用；picjs 运行时从 npm 在线安装到缓存，**不随仓库存储**。
 
 > 本仓库不是 picjs 本身，而是它的 skill 封装 + 示例。
-> picjs 的原始仓库是 **<https://github.com/pragdave-devo/picjs>**；本 skill 使用的
-> 0.4.0 运行时与文档快照来自它的后续发布线 **<https://github.com/pragdave/picjs>**。
+> picjs 的官方仓库是 **<https://github.com/pragdave/picjs>**（v0.4.0）。父仓库
+> <https://github.com/pragdave-devo/picjs> 停在 0.2.11，README 里仍是旧的
+> `@strike48/picjs`，别照着它装。
 
-## 原项目地址（picjs）
+## 上游项目地址（picjs）
 
 | 项目 | 地址 |
 |---|---|
-| picjs 原始仓库（0.2.11 及以前） | <https://github.com/pragdave-devo/picjs> |
-| picjs 当前发布线（0.2.12 及以后） | <https://github.com/pragdave/picjs> |
-| 文档（0.4.0） | <https://pragdave.github.io/picjs/> |
+| picjs 官方仓库（v0.4.0） | <https://github.com/pragdave/picjs> |
+| 父仓库（0.2.11，已停更） | <https://github.com/pragdave-devo/picjs> |
+| 文档 | <https://pragdave.github.io/picjs/> |
 | Playground | <https://pragdave.github.io/picjs/editor/> |
-| npm 包（当前） | <https://www.npmjs.com/package/@pragdave/picjs> |
-| npm 包（原始 scope） | <https://www.npmjs.com/package/@strike48/picjs> |
+| npm 包（官方） | <https://www.npmjs.com/package/@pragdave/picjs> |
+| npm 包（旧版） | <https://www.npmjs.com/package/@strike48/picjs> |
 | 作者 | Dave Thomas |
 | 许可证 | MIT（见 [`picjs-skill/LICENSE-picjs.md`](picjs-skill/LICENSE-picjs.md)） |
 | 本仓库（skill 包） | `https://github.com/<your-name>/<repo-name>`（发布后替换） |
@@ -168,5 +169,5 @@ bash scripts/update-from-upstream.sh --check   # 只检查版本
 
 - 本仓库的 skill 封装代码与文档：MIT，见 [`LICENSE`](LICENSE)。
 - 上游 picjs 及其文档、示例：MIT，Copyright © Dave Thomas，见 [`picjs-skill/LICENSE-picjs.md`](picjs-skill/LICENSE-picjs.md)。
-- picjs 原始项目：<https://github.com/pragdave-devo/picjs>；当前 0.4.0 发布线：
-  <https://github.com/pragdave/picjs>
+- picjs 官方项目：<https://github.com/pragdave/picjs>；父仓库（0.2.11，已停更）：
+  <https://github.com/pragdave-devo/picjs>
